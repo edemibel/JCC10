@@ -748,7 +748,7 @@ function loadEmbedCode() {
 
 <div style="width:100%; min-height:1000px; overflow:hidden; border-radius:12px; box-shadow:0 4px 20px rgba(0,0,0,0.1);">
     <iframe 
-        src="https://TU-USUARIO.github.io/JCC10/" 
+        src="https://edemibel.github.io/JCC10/" 
         width="100%" 
         height="1100" 
         style="border:none; border-radius:12px;" 
@@ -758,7 +758,7 @@ function loadEmbedCode() {
     </iframe>
 </div>
 
-<!-- NOTA: Reemplace "TU-USUARIO" con su nombre de usuario de GitHub -->`;
+<!-- Portal publicado en: https://edemibel.github.io/JCC10/ -->`;
 
     textarea.value = embedCode;
 }
