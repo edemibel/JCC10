@@ -13,6 +13,8 @@
 html {
     scroll-behavior: smooth;
     font-size: 16px;
+    width: 100%;
+    overflow-x: hidden;
 }
 
 body {
@@ -21,6 +23,8 @@ body {
     color: #0F172A;
     line-height: 1.6;
     min-height: 100vh;
+    width: 100%;
+    overflow-x: hidden;
 }
 
 a {
@@ -50,9 +54,13 @@ input, select, textarea, button {
 
 /* ── Container ─────────────────────────────────────────────────────────── */
 .container {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 24px;
+    width: 100%;
+    max-width: 1240px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: clamp(20px, 4vw, 44px);
+    padding-right: clamp(20px, 4vw, 44px);
+    box-sizing: border-box;
 }
 
 /* ── Top Bar ───────────────────────────────────────────────────────────── */
@@ -242,8 +250,12 @@ input, select, textarea, button {
 
 /* ── Main Content ──────────────────────────────────────────────────────── */
 .main-content {
-    padding: 40px 24px;
+    padding-top: 36px;
+    padding-bottom: 60px;
+    padding-left: clamp(20px, 4vw, 44px);
+    padding-right: clamp(20px, 4vw, 44px);
     min-height: 60vh;
+    box-sizing: border-box;
 }
 
 .tab-pane {
@@ -1295,7 +1307,8 @@ textarea {
     background: #FFFFFF;
     border-radius: 16px;
     border: 1px solid #E2E8F0;
-    overflow: hidden;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
@@ -1583,31 +1596,87 @@ textarea {
         font-size: 15px;
     }
 
+    .container {
+        padding-left: clamp(16px, 4vw, 24px);
+        padding-right: clamp(16px, 4vw, 24px);
+    }
+
+    .top-bar-content {
+        justify-content: center;
+        text-align: center;
+        gap: 6px 14px;
+        font-size: 0.78rem;
+    }
+
     .header-container {
         flex-direction: column;
         text-align: center;
+        gap: 16px;
     }
 
     .brand-logo {
         flex-direction: column;
+        gap: 12px;
+    }
+
+    .emblem-icon {
+        width: 58px;
+        height: 58px;
+        font-size: 1.5rem;
     }
 
     .brand-text h1 {
-        font-size: 1.3rem;
+        font-size: clamp(1.2rem, 4.5vw, 1.4rem);
+        line-height: 1.3;
+    }
+
+    .brand-text p {
+        font-size: clamp(0.74rem, 2.8vw, 0.84rem);
+    }
+
+    .header-badge {
+        font-size: 0.8rem;
+        padding: 6px 14px;
     }
 
     .nav-container {
-        padding: 8px 12px;
+        padding: 8px clamp(12px, 3vw, 20px);
+        gap: 6px;
     }
 
     .nav-btn {
-        padding: 10px 14px;
-        font-size: 0.85rem;
+        padding: 9px 14px;
+        font-size: 0.84rem;
+        white-space: nowrap;
+    }
+
+    .main-content {
+        padding-top: 24px;
+        padding-bottom: 40px;
+        padding-left: clamp(16px, 4vw, 24px);
+        padding-right: clamp(16px, 4vw, 24px);
     }
 
     .stepper {
         flex-wrap: wrap;
         justify-content: center;
+        gap: 8px;
+        padding: 14px 12px;
+    }
+
+    .step {
+        padding: 6px 10px;
+        gap: 8px;
+    }
+
+    .step-num {
+        width: 30px;
+        height: 30px;
+        font-size: 0.85rem;
+    }
+
+    .step-label {
+        font-size: 0.8rem;
     }
 
     .step-line {
@@ -1616,7 +1685,14 @@ textarea {
 
     .form-grid {
         grid-template-columns: 1fr;
-        padding: 20px;
+        padding: 20px 16px;
+        gap: 16px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        font-size: 16px; /* Evita zoom automático en Safari iOS */
     }
 
     .form-group.col-span-2 {
@@ -1625,6 +1701,7 @@ textarea {
 
     .modalidad-selector {
         grid-template-columns: 1fr;
+        gap: 14px;
     }
 
     .hearing-types-grid {
@@ -1633,15 +1710,22 @@ textarea {
 
     .ticket-row {
         grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .ticket-body {
+        padding: 20px 16px;
     }
 
     .ticket-footer-info {
         flex-direction: column;
         align-items: center;
+        text-align: center;
     }
 
     .footer-container {
         grid-template-columns: 1fr;
+        gap: 24px;
     }
 
     .admin-stats-grid {
@@ -1671,34 +1755,63 @@ textarea {
 
     .actions-footer {
         flex-direction: column;
+        gap: 10px;
     }
 
     .actions-footer .btn {
         width: 100%;
         justify-content: center;
     }
+
+    .modal-card {
+        padding: 20px 16px;
+    }
 }
 
 @media (max-width: 480px) {
     .main-content {
-        padding: 24px 12px;
+        padding-top: 20px;
+        padding-bottom: 36px;
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .container {
+        padding-left: 16px;
+        padding-right: 16px;
     }
 
     .section-title-box h2 {
-        font-size: 1.2rem;
+        font-size: 1.18rem;
+        gap: 8px;
+    }
+
+    .section-title-box p {
+        font-size: 0.88rem;
     }
 
     .hearing-card {
-        padding: 18px;
+        padding: 18px 16px;
     }
 
     .ticket-body {
-        padding: 18px;
+        padding: 18px 14px;
     }
 
     .ticket-header {
         flex-direction: column;
         text-align: center;
+        gap: 10px;
+        padding: 16px;
+    }
+
+    .ticket-code {
+        width: 100%;
+        text-align: center;
+    }
+
+    .embed-instructions-card {
+        padding: 20px 14px;
     }
 }
 
@@ -1750,30 +1863,31 @@ body.embedded-mode {
 }
 
 body.embedded-mode .container {
-    max-width: 100%;
-    padding: 0 16px;
+    max-width: 1240px;
+    padding-left: clamp(20px, 3.5vw, 40px);
+    padding-right: clamp(20px, 3.5vw, 40px);
 }
 
 body.embedded-mode .top-bar {
-    padding: 6px 0;
+    padding: 8px 0;
     font-size: 0.78rem;
 }
 
 body.embedded-mode .main-header {
-    padding: 18px 0;
+    padding: 20px 0;
 }
 
 body.embedded-mode .brand-text h1 {
-    font-size: 1.3rem;
+    font-size: clamp(1.15rem, 3.5vw, 1.45rem);
 }
 
 body.embedded-mode .brand-text p {
-    font-size: 0.8rem;
+    font-size: clamp(0.72rem, 2vw, 0.82rem);
 }
 
 body.embedded-mode .emblem-icon {
-    width: 52px;
-    height: 52px;
+    width: 54px;
+    height: 54px;
     font-size: 1.4rem;
 }
 
@@ -1782,12 +1896,14 @@ body.embedded-mode .header-badge {
 }
 
 body.embedded-mode .main-nav {
-    position: relative;
+    position: sticky;
+    top: 0;
+    z-index: 99;
 }
 
 body.embedded-mode .nav-container {
-    padding: 8px 16px;
-    gap: 4px;
+    padding: 8px clamp(16px, 3vw, 32px);
+    gap: 6px;
 }
 
 body.embedded-mode .nav-btn {
@@ -1796,12 +1912,15 @@ body.embedded-mode .nav-btn {
 }
 
 body.embedded-mode .main-content {
-    padding: 24px 16px;
+    padding-top: 24px;
+    padding-bottom: 40px;
+    padding-left: clamp(20px, 3.5vw, 40px);
+    padding-right: clamp(20px, 3.5vw, 40px);
 }
 
 body.embedded-mode .main-footer {
-    margin-top: 30px;
-    padding: 24px 0 0;
+    margin-top: 36px;
+    padding: 28px 0 0;
 }
 
 body.embedded-mode .footer-container {
@@ -1817,11 +1936,11 @@ body.embedded-mode .footer-col p {
 }
 
 body.embedded-mode .section-title-box h2 {
-    font-size: 1.3rem;
+    font-size: clamp(1.2rem, 3vw, 1.4rem);
 }
 
 body.embedded-mode .hearing-types-grid {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
 }
 
 body.embedded-mode .stepper {
