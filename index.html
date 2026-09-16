@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juzgado Público Civil y Comercial N° 10 | Agendamiento de Audiencias</title>
+    <meta name="description" content="Plataforma oficial para la reserva, agendamiento y consulta de audiencias del Juzgado Público Civil y Comercial N° 10 (Remates, Procesos Ordinarios, Monitorio Ejecutivo, Coactivos y Conciliaciones).">
+    
+    <!-- Google Fonts & Font Awesome Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Top Bar Status -->
+    <div class="top-bar">
+        <div class="container top-bar-content">
+            <div><i class="fa-solid fa-scale-balanced"></i> Órgano Judicial | Estado Plurinacional de Bolivia</div>
+            <div><i class="fa-solid fa-clock"></i> Atención de Secretaría: Lunes a Viernes 08:30 - 16:30</div>
+        </div>
+    </div>
+
+    <!-- Header Institucional -->
+    <header class="main-header">
+        <div class="container header-container">
+            <div class="brand-logo">
+                <div class="emblem-icon">
+                    <i class="fa-solid fa-building-columns"></i>
+                </div>
+                <div class="brand-text">
+                    <h1>JUZGADO PÚBLICO CIVIL Y COMERCIAL N° 10</h1>
+                    <p>SISTEMA OFICIAL DE AGENDAMIENTO, GESTIÓN Y NOTIFICACIONES DE AUDIENCIAS</p>
+                </div>
+            </div>
+            <div class="header-badge" id="admin-status-badge">
+                <i class="fa-solid fa-shield-halved"></i> Portal Oficial de Audiencias
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <nav class="main-nav">
+        <div class="container nav-container">
+            <button class="nav-btn active" onclick="switchTab('agendamiento')">
+                <i class="fa-solid fa-calendar-plus"></i> Agendar Audiencia
+            </button>
+            <button class="nav-btn" onclick="switchTab('consulta')">
+                <i class="fa-solid fa-magnifying-glass"></i> Consultar Agenda / NUREJ
+            </button>
+            <button class="nav-btn" onclick="switchTab('requisitos')">
+                <i class="fa-solid fa-book-bookmark"></i> Tipos & Requisitos
+            </button>
+            <button class="nav-btn" onclick="switchTab('secretaria')">
+                <i class="fa-solid fa-user-gear"></i> Secretaría & Administradores
+            </button>
+            <button class="nav-btn highlight-btn" onclick="switchTab('embed-guide')">
+                <i class="fa-brands fa-google"></i> Código para Google Sites
+            </button>
+        </div>
+    </nav>
+
+    <main class="container main-content">
+        <!-- SECCIÓN 1: AGENDAMIENTO DE AUDIENCIAS -->
+        <section id="tab-agendamiento" class="tab-pane active">
+            <div class="section-title-box">
+                <h2><i class="fa-solid fa-calendar-check"></i> Solicitud de Agendamiento de Audiencia</h2>
+                <p>Seleccione el tipo de proceso judicial y complete la información de las partes procesales y abogado patrocinante.</p>
+            </div>
+
+            <!-- Pasos del Flujo -->
+            <div class="stepper">
+                <div class="step active" id="step-indicator-1">
+                    <span class="step-num">1</span>
+                    <span class="step-label">Tipo de Audiencia</span>
+                </div>
+                <div class="step-line"></div>
+                <div class="step" id="step-indicator-2">
+                    <span class="step-num">2</span>
+                    <span class="step-label">Datos de la Causa</span>
+                </div>
+                <div class="step-line"></div>
+                <div class="step" id="step-indicator-3">
+                    <span class="step-num">3</span>
+                    <span class="step-label">Fecha y Modalidad</span>
+                </div>
+                <div class="step-line"></div>
+                <div class="step" id="step-indicator-4">
+                    <span class="step-num">4</span>
+                    <span class="step-label">Confirmación & WhatsApp</span>
+                </div>
+            </div>
+
+            <!-- Paso 1: Selección de Tipo de Audiencia -->
+            <div id="step-1" class="step-content">
+                <h3 class="subsection-title">Elija el tipo de audiencia requerida:</h3>
+                <div class="hearing-types-grid">
+                    <div class="hearing-card" onclick="selectHearingType('remates', this)">
+                        <div class="card-icon"><i class="fa-solid fa-gavel"></i></div>
+                        <h4>Audiencia de Remate</h4>
+                        <p>Subastas judiciales de bienes muebles/inmuebles, apertura de pujas, acreditación de postores y liquidación.</p>
+                        <span class="tag">Proceso de Ejecución</span>
+                    </div>
+
+                    <div class="hearing-card" onclick="selectHearingType('ordinarios', this)">
+                        <div class="card-icon"><i class="fa-solid fa-file-signature"></i></div>
+                        <h4>Proceso Ordinario</h4>
+                        <p>Audiencia preliminar (fijación de objeto de prueba, saneamiento) y audiencia complementaria de desahogo de prueba.</p>
+                        <span class="tag">Conocimiento</span>
+                    </div>
+
+                    <div class="hearing-card" onclick="selectHearingType('monitorio', this)">
+                        <div class="card-icon"><i class="fa-solid fa-file-invoice-dollar"></i></div>
+                        <h4>Monitorio Ejecutivo</h4>
+                        <p>Ejecución de títulos valores, documentos públicos/privados, resolución de excepciones y sentencia ejecutiva.</p>
+                        <span class="tag">Especial</span>
+                    </div>
+
+                    <div class="hearing-card" onclick="selectHearingType('coactivos', this)">
+                        <div class="card-icon"><i class="fa-solid fa-scale-unbalanced-flip"></i></div>
+                        <h4>Proceso Coactivo</h4>
+                        <p>Ejecución de garantías reales, créditos bancarios/financieros y diligencias de remate coactivo.</p>
+                        <span class="tag">Coactivo Civil</span>
+                    </div>
+
+                    <div class="hearing-card" onclick="selectHearingType('conciliaciones', this)">
+                        <div class="card-icon"><i class="fa-solid fa-handshake"></i></div>
+                        <h4>Audiencia de Conciliación</h4>
+                        <p>Diligencias de conciliación previa u intra-procesal promovidas por la Conciliadora/Juez del juzgado.</p>
+                        <span class="tag">Solución Alternativa</span>
+                    </div>
+                </div>
+
+                <div class="actions-footer text-right">
+                    <button class="btn btn-primary" onclick="goToStep(2)" id="btn-to-step-2" disabled>
+                        Siguiente: Datos de la Causa <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Paso 2: Datos del Expediente y Partes -->
+            <div id="step-2" class="step-content hidden">
+                <h3 class="subsection-title">Datos del Expediente y Partes Procesales</h3>
+                <form id="form-case-details" onsubmit="event.preventDefault(); goToStep(3);">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="nurej"><i class="fa-solid fa-hashtag"></i> NUREJ / N° de Expediente *</label>
+                            <input type="text" id="nurej" placeholder="Ej. 10294820 / EXP-102-2026" required>
+                            <small>Identificador único registrado en el sistema judicial.</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="demandante"><i class="fa-solid fa-user"></i> Parte Demandante / Solicitante *</label>
+                            <input type="text" id="demandante" placeholder="Nombre completo o Razón Social" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="demandado"><i class="fa-solid fa-user-minus"></i> Parte Demandada / Requerida *</label>
+                            <input type="text" id="demandado" placeholder="Nombre completo o Razón Social" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="abogado-nombre"><i class="fa-solid fa-user-tie"></i> Abogado Patrocinante *</label>
+                            <input type="text" id="abogado-nombre" placeholder="Nombre completo del Abogado" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="abogado-mat"><i class="fa-solid fa-id-card"></i> N° Matrícula Profesional (RPA/CAIC) *</label>
+                            <input type="text" id="abogado-mat" placeholder="Ej. MP-84920-CB" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contacto-telefono"><i class="fa-brands fa-whatsapp"></i> WhatsApp / Teléfono para Notificaciones *</label>
+                            <input type="tel" id="contacto-telefono" placeholder="Ej. 71234567" required>
+                            <small>A este número se enviará la confirmación y recordatorio automático por WhatsApp.</small>
+                        </div>
+
+                        <div class="form-group col-span-2">
+                            <label for="contacto-email"><i class="fa-solid fa-envelope"></i> Correo Electrónico *</label>
+                            <input type="email" id="contacto-email" placeholder="abogado@estudiojuridico.com" required>
+                        </div>
+                    </div>
+
+                    <div class="actions-footer">
+                        <button type="button" class="btn btn-secondary" onclick="goToStep(1)">
+                            <i class="fa-solid fa-arrow-left"></i> Atrás
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            Siguiente: Fecha y Modalidad <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Paso 3: Fecha, Hora y Modalidad -->
+            <div id="step-3" class="step-content hidden">
+                <h3 class="subsection-title">Modalidad, Fecha y Horario de la Audiencia</h3>
+                
+                <div class="modalidad-selector">
+                    <div class="mod-card selected" onclick="selectModalidad('presencial', this)">
+                        <i class="fa-solid fa-building-user"></i>
+                        <h4>Presencial</h4>
+                        <p>En Sala de Audiencias N° 10 (Piso 3, Edificio Judicial Central)</p>
+                    </div>
+                    <div class="mod-card" onclick="selectModalidad('virtual', this)">
+                        <i class="fa-solid fa-video"></i>
+                        <h4>Virtual (Zoom / Teams)</h4>
+                        <p>Enlace de conexión enviado automáticamente por WhatsApp y correo</p>
+                    </div>
+                </div>
+
+                <div class="schedule-picker-box">
+                    <div class="form-group">
+                        <label for="hearing-date"><i class="fa-solid fa-calendar-days"></i> Seleccione la Fecha de Audiencia *</label>
+                        <input type="date" id="hearing-date" onchange="loadAvailableSlots()" required>
+                    </div>
+
+                    <div class="slots-container">
+                        <label><i class="fa-solid fa-clock"></i> Turnos Disponibles en el Juzgado N° 10:</label>
+                        <div id="slots-grid" class="slots-grid">
+                            <p class="select-prompt">Seleccione una fecha válida para cargar los turnos judiciales disponibles.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="observaciones"><i class="fa-solid fa-comment-dots"></i> Observaciones o Solicitud Especial (Opcional)</label>
+                    <textarea id="observaciones" rows="3" placeholder="Indique si requiere presencia de peritos, intérprete, o acreditación previa de postores..."></textarea>
+                </div>
+
+                <div class="actions-footer">
+                    <button type="button" class="btn btn-secondary" onclick="goToStep(2)">
+                        <i class="fa-solid fa-arrow-left"></i> Atrás
+                    </button>
+                    <button type="button" class="btn btn-primary" onclick="processBooking()" id="btn-finish-booking" disabled>
+                         Confirmar y Notificar <i class="fa-solid fa-check-circle"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Paso 4: Pase / Ticket Generado + WhatsApp -->
+            <div id="step-4" class="step-content hidden">
+                <div class="success-banner">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <h3>¡AUDIENCIA REGISTRADA EXITOSAMENTE!</h3>
+                    <p>Se ha generado el Comprobante Oficial y se ha preparado la notificación por WhatsApp.</p>
+                </div>
+
+                <!-- Ticket Imprimible -->
+                <div class="ticket-card" id="printable-ticket">
+                    <div class="ticket-header">
+                        <div class="ticket-brand">
+                            <i class="fa-solid fa-scale-balanced"></i>
+                            <div>
+                                <h4>JUZGADO PÚBLICO CIVIL Y COMERCIAL N° 10</h4>
+                                <small>ESTADO PLURINACIONAL - ÓRGANO JUDICIAL</small>
+                            </div>
+                        </div>
+                        <div class="ticket-code" id="ticket-id">AUD-2026-10948</div>
+                    </div>
+
+                    <div class="ticket-body">
+                        <div class="ticket-row">
+                            <div>
+                                <span class="lbl">NUREJ / EXPEDIENTE:</span>
+                                <strong id="t-nurej">-</strong>
+                            </div>
+                            <div>
+                                <span class="lbl">TIPO DE AUDIENCIA:</span>
+                                <strong id="t-tipo" class="text-gold">-</strong>
+                            </div>
+                        </div>
+
+                        <div class="ticket-row">
+                            <div>
+                                <span class="lbl">DEMANDANTE / SOLICITANTE:</span>
+                                <span id="t-demandante">-</span>
+                            </div>
+                            <div>
+                                <span class="lbl">DEMANDADO / REQUERIDO:</span>
+                                <span id="t-demandado">-</span>
+                            </div>
+                        </div>
+
+                        <div class="ticket-row">
+                            <div>
+                                <span class="lbl">ABOGADO PATROCINANTE:</span>
+                                <span id="t-abogado">-</span> (<span id="t-mat">-</span>)
+                            </div>
+                            <div>
+                                <span class="lbl">MODALIDAD:</span>
+                                <strong id="t-modalidad">-</strong>
+                            </div>
+                        </div>
+
+                        <div class="ticket-highlight">
+                            <div class="th-item">
+                                <i class="fa-solid fa-calendar-day"></i>
+                                <div>
+                                    <small>FECHA DE AUDIENCIA</small>
+                                    <h4 id="t-fecha">-</h4>
+                                </div>
+                            </div>
+                            <div class="th-item">
+                                <i class="fa-solid fa-clock"></i>
+                                <div>
+                                    <small>HORARIO FIJADO</small>
+                                    <h4 id="t-hora">-</h4>
+                                </div>
+                            </div>
+                            <div class="th-item">
+                                <i class="fa-solid fa-location-dot"></i>
+                                <div>
+                                    <small>UBICACIÓN / SALA</small>
+                                    <h4 id="t-lugar">Sala N° 10</h4>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="ticket-footer-info">
+                            <div class="qr-placeholder">
+                                <i class="fa-solid fa-qrcode"></i>
+                                <small>VERIFICACIÓN QR</small>
+                            </div>
+                            <div class="ticket-notes">
+                                <p><strong>Instrucciones Importantes:</strong></p>
+                                <ul>
+                                    <li>Presentar este comprobante junto a su C.I. y Matrícula Profesional 15 minutos antes.</li>
+                                    <li>Recibirás un recordatorio automático por WhatsApp 24 horas antes de tu audiencia.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="actions-footer center-btns">
+                    <button class="btn btn-whatsapp" id="btn-send-whatsapp" onclick="sendWhatsAppConfirmation()">
+                        <i class="fa-brands fa-whatsapp"></i> Enviar Confirmación por WhatsApp
+                    </button>
+                    <button class="btn btn-gold" onclick="window.print()">
+                        <i class="fa-solid fa-print"></i> Imprimir / Guardar PDF
+                    </button>
+                    <button class="btn btn-secondary" onclick="resetForm()">
+                        <i class="fa-solid fa-plus"></i> Agendar Otra Audiencia
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 2: CONSULTA DE AGENDA -->
+        <section id="tab-consulta" class="tab-pane hidden">
+            <div class="section-title-box">
+                <h2><i class="fa-solid fa-magnifying-glass"></i> Consulta Pública de Audiencias Programadas</h2>
+                <p>Verifique el estado, día, hora y enlace de su audiencia registrada en el Juzgado N° 10.</p>
+            </div>
+
+            <div class="search-box">
+                <div class="search-input-group">
+                    <i class="fa-solid fa-hashtag search-icon"></i>
+                    <input type="text" id="search-query" placeholder="Ingrese NUREJ, N° de Expediente o Nombre de Parte Procesal...">
+                    <button class="btn btn-primary" onclick="searchHearings()">
+                        <i class="fa-solid fa-search"></i> Buscar Audiencia
+                    </button>
+                </div>
+            </div>
+
+            <div class="results-box">
+                <h3 class="subsection-title">Audiencias Encontradas:</h3>
+                <div id="results-list" class="hearings-list">
+                    <!-- Dinámico -->
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 3: TIPOS Y REQUISITOS DE AUDIENCIAS -->
+        <section id="tab-requisitos" class="tab-pane hidden">
+            <div class="section-title-box">
+                <h2><i class="fa-solid fa-book-bookmark"></i> Protocolos y Requisitos por Tipo de Audiencia</h2>
+                <p>Consulte las condiciones obligatorias dictadas por la Ley N° 439 (Código Procesal Civil) para cada procedimiento.</p>
+            </div>
+
+            <div class="requirements-accordion">
+                <!-- Remates -->
+                <div class="req-card">
+                    <div class="req-header" onclick="toggleAccordion(this)">
+                        <div class="req-title">
+                            <i class="fa-solid fa-gavel text-gold"></i>
+                            <h3>1. Audiencia de Remate y Subasta Judicial</h3>
+                        </div>
+                        <i class="fa-solid fa-chevron-down arrow"></i>
+                    </div>
+                    <div class="req-body">
+                        <h4>Requisitos e Instrucciones para Postores y Partes:</h4>
+                        <ul>
+                            <li><i class="fa-solid fa-check"></i> Depósito de Garantía (Empozo del 20% de la base del remate) mediante Certificado de Depósito Judicial en el Banco Unión.</li>
+                            <li><i class="fa-solid fa-check"></i> Cédula de Identidad original del postor o Poder Notariado con facultad expresa de representación.</li>
+                            <li><i class="fa-solid fa-check"></i> Presentación del aviso de remate publicado en prensa nacional conforme al Art. 419 de la Ley 439.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Procesos Ordinarios -->
+                <div class="req-card">
+                    <div class="req-header" onclick="toggleAccordion(this)">
+                        <div class="req-title">
+                            <i class="fa-solid fa-file-signature text-gold"></i>
+                            <h3>2. Proceso Ordinario (Preliminar y Complementaria)</h3>
+                        </div>
+                        <i class="fa-solid fa-chevron-down arrow"></i>
+                    </div>
+                    <div class="req-body">
+                        <h4>Fases obligatorias y requerimientos:</h4>
+                        <ul>
+                            <li><i class="fa-solid fa-check"></i> <strong>Audiencia Preliminar (Art. 365):</strong> Ratificación de demanda, tentativa de conciliación intra-procesal y fijación de objeto de prueba.</li>
+                            <li><i class="fa-solid fa-check"></i> <strong>Audiencia Complementaria (Art. 368):</strong> Desahogo de pruebas admitidas y alegatos.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Monitorio -->
+                <div class="req-card">
+                    <div class="req-header" onclick="toggleAccordion(this)">
+                        <div class="req-title">
+                            <i class="fa-solid fa-file-invoice-dollar text-gold"></i>
+                            <h3>3. Proceso Monitorio Ejecutivo</h3>
+                        </div>
+                        <i class="fa-solid fa-chevron-down arrow"></i>
+                    </div>
+                    <div class="req-body">
+                        <ul>
+                            <li><i class="fa-solid fa-check"></i> Presentación del Título Ejecutivo original (Pagaré, Letra de Cambio, Escritura Pública de Préstamo con fuerza ejecutiva).</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Coactivos -->
+                <div class="req-card">
+                    <div class="req-header" onclick="toggleAccordion(this)">
+                        <div class="req-title">
+                            <i class="fa-solid fa-scale-unbalanced-flip text-gold"></i>
+                            <h3>4. Procesos Coactivos Civiles</h3>
+                        </div>
+                        <i class="fa-solid fa-chevron-down arrow"></i>
+                    </div>
+                    <div class="req-body">
+                        <ul>
+                            <li><i class="fa-solid fa-check"></i> Título Coactivo con garantía hipotecaria o prendaria inscrita en Derechos Reales.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Conciliaciones -->
+                <div class="req-card">
+                    <div class="req-header" onclick="toggleAccordion(this)">
+                        <div class="req-title">
+                            <i class="fa-solid fa-handshake text-gold"></i>
+                            <h3>5. Audiencias de Conciliación Previa</h3>
+                        </div>
+                        <i class="fa-solid fa-chevron-down arrow"></i>
+                    </div>
+                    <div class="req-body">
+                        <ul>
+                            <li><i class="fa-solid fa-check"></i> Carácter voluntario y confidencial en el marco de la cultura de paz.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 4: SECRETARÍA JUDICIAL Y GESTIÓN DE ADMINISTRADORES -->
+        <section id="tab-secretaria" class="tab-pane hidden">
+            <div class="section-title-box">
+                <h2><i class="fa-solid fa-user-gear"></i> Panel de Control - Secretaría & Gestión de Administradores</h2>
+                <p>Gestión interna de causas, notificaciones masivas por WhatsApp y administración de personal judicial.</p>
+            </div>
+
+            <!-- Botones de Acción de Administración -->
+            <div class="admin-header-actions">
+                <div>
+                    <span id="current-user-info" class="text-gold font-bold">Sesión no iniciada (Modo Consulta)</span>
+                </div>
+                <div>
+                    <button class="btn btn-sm btn-gold" onclick="openLoginModal()" id="btn-login-modal">
+                        <i class="fa-solid fa-key"></i> Iniciar Sesión de Administrador
+                    </button>
+                    <button class="btn btn-sm btn-secondary hidden" onclick="logoutAdmin()" id="btn-logout-admin">
+                        <i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión
+                    </button>
+                </div>
+            </div>
+
+            <!-- Estadísticas -->
+            <div class="admin-stats-grid">
+                <div class="stat-card">
+                    <i class="fa-solid fa-calendar-day icon-blue"></i>
+                    <div>
+                        <h3 id="stat-hoy">0</h3>
+                        <span>Audiencias Hoy</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <i class="fa-solid fa-clock icon-gold"></i>
+                    <div>
+                        <h3 id="stat-pendientes">0</h3>
+                        <span>Pendientes</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <i class="fa-brands fa-whatsapp icon-green"></i>
+                    <div>
+                        <h3 id="stat-notificadas">0</h3>
+                        <span>Notificadas por WhatsApp</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tabla de Causas -->
+            <div class="admin-table-container">
+                <div class="table-header" style="display:flex; justify-content:space-between; padding:20px; align-items:center;">
+                    <h3>Agenda de Causas Judiciales</h3>
+                    <button class="btn btn-sm btn-secondary" onclick="renderAdminTable()">
+                        <i class="fa-solid fa-rotate"></i> Actualizar Agenda
+                    </button>
+                </div>
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>NUREJ / Exp.</th>
+                            <th>Tipo de Audiencia</th>
+                            <th>Partes Processales</th>
+                            <th>Fecha y Hora</th>
+                            <th>Contacto WhatsApp</th>
+                            <th>Estado</th>
+                            <th>Acciones & Recordatorios</th>
+                        </tr>
+                    </thead>
+                    <tbody id="admin-table-body">
+                        <!-- Carga dinámica por JS -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- MÓDULO DE GESTIÓN DE USUARIOS ADMINISTRADORES -->
+            <div class="admin-management-box" style="margin-top:40px; background:#FFFFFF; padding:30px; border-radius:16px; border:1px solid #CBD5E1;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+                    <h3><i class="fa-solid fa-users-gear"></i> Personal Administrador Autorizado (Juez, Secretarios, Auxiliares)</h3>
+                    <button class="btn btn-sm btn-primary" onclick="openAddAdminModal()" id="btn-add-admin" disabled>
+                        <i class="fa-solid fa-user-plus"></i> Agregar Nuevo Administrador
+                    </button>
+                </div>
+                <div id="admin-users-list" class="admin-users-grid">
+                    <!-- Carga dinámica -->
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 5: GUÍA DE EMBEBIDO DE GOOGLE SITES -->
+        <section id="tab-embed-guide" class="tab-pane hidden">
+            <div class="section-title-box">
+                <h2><i class="fa-brands fa-google"></i> Integración del Portal en Google Sites</h2>
+                <p>Pasos para incrustar esta versión maximizada con WhatsApp y Administradores en Google Sites.</p>
+            </div>
+
+            <div class="embed-instructions-card">
+                <h3><i class="fa-solid fa-cubes"></i> Instrucciones para Google Sites (`sites.google.com`)</h3>
+                <ol class="steps-list">
+                    <li>Abra su sitio en <a href="https://sites.google.com" target="_blank" rel="noopener">sites.google.com</a>.</li>
+                    <li>En la página elegida, vaya a <strong>Insertar > Incorporar > Código HTML</strong>.</li>
+                    <li>Copie y pegue el código completo disponible a continuación.</li>
+                    <li><strong>IMPORTANTE PARA TAMAÑO AMPLIO:</strong> Ajuste el recuadro del widget arrastrando los bordes hacia los extremos de la pantalla y fije un alto mínimo de <strong>1000px</strong>.</li>
+                </ol>
+
+                <div class="code-box-header">
+                    <span><i class="fa-solid fa-code"></i> Código Autocontenido Completo</span>
+                    <button class="btn btn-sm btn-gold" onclick="copyEmbedCode()">
+                        <i class="fa-solid fa-copy"></i> Copiar Código Completo
+                    </button>
+                </div>
+                <textarea id="embed-code-textarea" readonly rows="12"></textarea>
+            </div>
+        </section>
+    </main>
+
+    <!-- MODAL DE INICIO DE SESIÓN DE ADMINISTRADOR -->
+    <div id="modal-login" class="modal-overlay hidden">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3><i class="fa-solid fa-lock"></i> Acceso a Secretaría Judicial</h3>
+                <button style="background:none; border:none; font-size:1.5rem; cursor:pointer;" onclick="closeLoginModal()">&times;</button>
+            </div>
+            <form onsubmit="event.preventDefault(); processLogin();">
+                <div class="form-group" style="margin-bottom:15px;">
+                    <label for="login-user">Usuario / Cargo:</label>
+                    <input type="text" id="login-user" placeholder="Ej. juez10 / secretario10" required>
+                </div>
+                <div class="form-group" style="margin-bottom:20px;">
+                    <label for="login-pass">Contraseña / PIN Oficial:</label>
+                    <input type="password" id="login-pass" placeholder="••••••••" required>
+                </div>
+                <div class="text-right">
+                    <button type="submit" class="btn btn-primary">Ingresar al Sistema</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL DE AGREGAR ADMINISTRADOR -->
+    <div id="modal-add-admin" class="modal-overlay hidden">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3><i class="fa-solid fa-user-plus"></i> Registrar Nuevo Administrador</h3>
+                <button style="background:none; border:none; font-size:1.5rem; cursor:pointer;" onclick="closeAddAdminModal()">&times;</button>
+            </div>
+            <form onsubmit="event.preventDefault(); processAddAdmin();">
+                <div class="form-group" style="margin-bottom:15px;">
+                    <label for="new-admin-name">Nombre Completo del Funcionario:</label>
+                    <input type="text" id="new-admin-name" placeholder="Ej. Dr. Mario Vargas Losa" required>
+                </div>
+                <div class="form-group" style="margin-bottom:15px;">
+                    <label for="new-admin-role">Cargo Judicial / Rol:</label>
+                    <select id="new-admin-role" required>
+                        <option value="Juez Titular">Juez Titular</option>
+                        <option value="Secretario de Cámara">Secretario de Cámara</option>
+                        <option value="Auxiliar Judicial">Auxiliar Judicial</option>
+                        <option value="Conciliador/a">Conciliador/a</option>
+                    </select>
+                </div>
+                <div class="form-group" style="margin-bottom:15px;">
+                    <label for="new-admin-user">Nombre de Usuario para Login:</label>
+                    <input type="text" id="new-admin-user" placeholder="Ej. mvargas" required>
+                </div>
+                <div class="form-group" style="margin-bottom:20px;">
+                    <label for="new-admin-pass">Contraseña / PIN de Acceso:</label>
+                    <input type="password" id="new-admin-pass" placeholder="Mínimo 4 caracteres" required>
+                </div>
+                <div class="text-right">
+                    <button type="submit" class="btn btn-gold">Crear Administrador</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container footer-container">
+            <div class="footer-col">
+                <h4>Juzgado Público Civil y Comercial N° 10</h4>
+                <p>Tribunal Departamental de Justicia. Órgano Judicial de Bolivia.</p>
+                <p><i class="fa-solid fa-location-dot"></i> Edificio Judicial Central - Piso 3, Sala N° 10</p>
+            </div>
+            <div class="footer-col">
+                <h4>Contacto y Secretaría</h4>
+                <p><i class="fa-solid fa-phone"></i> Central Telefónica: (+591) 2 2400000 Int. 1010</p>
+                <p><i class="fa-brands fa-whatsapp"></i> WhatsApp Oficial Secretaría: (+591) 71234567</p>
+            </div>
+            <div class="footer-col">
+                <h4>Horarios de Audiencias</h4>
+                <p>Lunes a Viernes:</p>
+                <p>Mañanas: 08:30 - 12:30 | Tardes: 14:30 - 18:30</p>
+            </div>
+        </div>
+        <div class="footer-bottom text-center">
+            <p>&copy; 2026 Juzgado Público Civil y Comercial N° 10. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
