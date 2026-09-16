@@ -21,6 +21,11 @@ const AppState = {
 
 // ── Inicialización ──────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', function () {
+    // Detectar si estamos dentro de un iframe (Google Sites, etc.)
+    if (window.self !== window.top) {
+        document.body.classList.add('embedded-mode');
+    }
+
     loadFromStorage();
     renderAdminTable();
     renderAdminUsers();

@@ -1739,3 +1739,91 @@ textarea {
         print-color-adjust: exact;
     }
 }
+
+/* ── Modo Embebido (Google Sites / iframe) ─────────────────────────────── */
+/* Activado automáticamente cuando el sitio detecta que está dentro de un iframe */
+body.embedded-mode {
+    background-color: #FFFFFF;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+body.embedded-mode .container {
+    max-width: 100%;
+    padding: 0 16px;
+}
+
+body.embedded-mode .top-bar {
+    padding: 6px 0;
+    font-size: 0.78rem;
+}
+
+body.embedded-mode .main-header {
+    padding: 18px 0;
+}
+
+body.embedded-mode .brand-text h1 {
+    font-size: 1.3rem;
+}
+
+body.embedded-mode .brand-text p {
+    font-size: 0.8rem;
+}
+
+body.embedded-mode .emblem-icon {
+    width: 52px;
+    height: 52px;
+    font-size: 1.4rem;
+}
+
+body.embedded-mode .header-badge {
+    display: none;
+}
+
+body.embedded-mode .main-nav {
+    position: relative;
+}
+
+body.embedded-mode .nav-container {
+    padding: 8px 16px;
+    gap: 4px;
+}
+
+body.embedded-mode .nav-btn {
+    padding: 10px 14px;
+    font-size: 0.85rem;
+}
+
+body.embedded-mode .main-content {
+    padding: 24px 16px;
+}
+
+body.embedded-mode .main-footer {
+    margin-top: 30px;
+    padding: 24px 0 0;
+}
+
+body.embedded-mode .footer-container {
+    gap: 20px;
+}
+
+body.embedded-mode .footer-col h4 {
+    font-size: 0.9rem;
+}
+
+body.embedded-mode .footer-col p {
+    font-size: 0.82rem;
+}
+
+body.embedded-mode .section-title-box h2 {
+    font-size: 1.3rem;
+}
+
+body.embedded-mode .hearing-types-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+body.embedded-mode .stepper {
+    padding: 14px;
+}
